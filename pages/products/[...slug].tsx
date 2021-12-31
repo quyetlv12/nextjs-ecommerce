@@ -7,6 +7,7 @@ const Products = () => {
     return (
         <div>
             trang slug
+            <button onClick={() => router.push("/home")}>chuyển hướng</button>
         </div>
     )
 }

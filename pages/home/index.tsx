@@ -1,6 +1,6 @@
+import Link from "next/link";
 import { useRouter } from "next/router"
-
-export default function Home() {
+function Home() {
     const router = useRouter()
     const {query : id} = router
     console.log(id);
@@ -13,11 +13,13 @@ export default function Home() {
     ]
     return (
         <div>
-            trang chu
            { arr.map((_elt,index) => (
                 <div>{_elt?.name}</div>
            ))}
+           <Link href={"/products"}>
+           <a>Trang sản phẩm</a>
+           </Link>
         </div>
     )
 }
-
+export default Home

@@ -1,12 +1,10 @@
 import type { NextPage } from 'next'
-import Link from 'next/link'
-import Layout from '../components/Layout'
-import Products from './products'
+import Layout from '../components/layout'
 const Home: NextPage = () => {
   return (
-    <Layout>
-      <Products/>
-    </Layout>
+   <div>
+     trang chu
+   </div>
   )
 }
 
