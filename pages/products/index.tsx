@@ -23,6 +23,7 @@ const Products = ({
   if(typeof window !== undefined){
     console.log("client");
   }
+  
   return (
     <section className="text-gray-600 body-font">
       <div className="flex flex-wrap">
