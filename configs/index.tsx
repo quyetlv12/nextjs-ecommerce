@@ -1,5 +1,6 @@
-import * as React from 'react';
-import * as Redux from 'redux';
-export type Dispatch = Redux.Dispatch;
-export type ReactNode = React.ReactNode;
-export type Store<S> = Redux.Store<S>;
+import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
+import { RootState, AppDispatch } from '../redux/store';
+export const useAppDispatch = () => useDispatch<AppDispatch>();
+export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector;
+export type idProps = number | string | undefined
+
