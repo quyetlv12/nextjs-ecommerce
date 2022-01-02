@@ -1,32 +1,28 @@
 import { createSlice, Draft, PayloadAction } from '@reduxjs/toolkit';
+import { RootState } from '../store';
 
 const initialState = {
-  id: 1,
-  username: 'benja',
-};
+  availableProducts : [] = [] 
+} as any
 
 export const productsSlices = createSlice({
-  name: 'products',
+  name: 'availableProducts',
   initialState,
   reducers: {
-    setUser: (
+    getAllProducts: (
       state: Draft<typeof initialState>,
       action: PayloadAction<typeof initialState>
     ) => {
-      state.id = action.payload.id;
-      state.username = action.payload.username;
+      state.availableProducts = action.payload
+      
     },
-    // resetUser: (state: Draft<typeof initialState>) => {
-    //   state.id = null;
-    //   state.username = null;
-    // },
   },
 });
 
 // Selectors
-export const getUser = (state:any) => state.products;
+export const getUser = (state:any) => state.availableProducts;
 
 // Reducers and actions
-export const { setUser } = productsSlices.actions;
-
+export const { getAllProducts } = productsSlices.actions;
+export const setProducts = (state: RootState) => state.allproducts;
 export default productsSlices.reducer;
