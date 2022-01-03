@@ -1,19 +1,21 @@
 import { InferGetStaticPropsType } from "next";
-import App, { AppContext } from "next/app";
-import Image from "next/image";
-import Link from "next/link";
 import React, { useEffect } from "react";
-import { useDispatch } from "react-redux";
 import { useAppDispatch, useAppSelector } from "../../configs";
 import { ProductsProps } from "../../interfaces/products";
 import { IndexProps } from "../../interfaces/utility";
 import { getAllProducts, setProducts } from "../../redux/slices/productsSlices";
-
-export async function getStaticProps(appContext: AppContext) {
-  const res = await fetch(
-    "https://614604dd38339400175fc7c4.mockapi.io/products"
-  );
-  const products = await res.json();
+import { ProductService } from "../../services/products";
+import { makeStyles } from '@material-ui/core/styles';
+import Card from '@material-ui/core/Card';
+import CardActionArea from '@material-ui/core/CardActionArea';
+import CardActions from '@material-ui/core/CardActions';
+import CardContent from '@material-ui/core/CardContent';
+import CardMedia from '@material-ui/core/CardMedia';
+import Button from '@material-ui/core/Button';
+import Typography from '@material-ui/core/Typography';
+export  const getStaticProps = async () => {
+  const res = await ProductService.getAllProducts()
+  const products = res.data || [];
   return {
     props: {
       products,
@@ -30,35 +32,38 @@ const Products = ({
     dispatch(getAllProducts(products));
   }, []);
   return (
-    <section className="text-gray-600 body-font">
-      <div className="flex flex-wrap">
-        {availableProducts.map((_elt: ProductsProps, index: IndexProps) => (
-          <div className="flex flex-wrap m-4 gap-10 p-2" key={index}>
-            <div>
-              <Link href={`/products/${_elt.id}`}>
-                <a className="block relative h-48 rounded-lg overflow-hidden">
-                  <Image
-                    alt="ecommerce"
-                    className="object-cover object-center h-full block w-[200px]"
-                    src={_elt.image}
-                    height={300}
-                    width={300}
-                    layout="responsive"
-                    priority
-                  />
-                </a>
-              </Link>
-              <div className="mt-4">
-                <h2 className="text-gray-900 title-font text-lg font-medium">
-                  {_elt.name}
-                </h2>
-                <p className="mt-1">{_elt.price}</p>
-              </div>
-            </div>
-          </div>
+   <div>
+      {availableProducts.map((_elt: ProductsProps, index: IndexProps) => (
+           <Card>
+           <CardActionArea>
+             <CardMedia
+               component="img"
+               alt="Contemplative Reptile"
+               height="140"
+               image="/static/images/cards/contemplative-reptile.jpg"
+               title="Contemplative Reptile"
+             />
+             <CardContent>
+               <Typography gutterBottom variant="h5" component="h2">
+                 Lizard
+               </Typography>
+               <Typography variant="body2" color="textSecondary" component="p">
+                 Lizards are a widespread group of squamate reptiles, with over 6,000 species, ranging
+                 across all continents except Antarctica
+               </Typography>
+             </CardContent>
+           </CardActionArea>
+           <CardActions>
+             <Button size="small" color="primary">
+               Share
+             </Button>
+             <Button size="small" color="primary">
+               Learn More
+             </Button>
+           </CardActions>
+         </Card>
         ))}
-      </div>
-    </section>
+   </div>
   );
 };
 export default Products;
