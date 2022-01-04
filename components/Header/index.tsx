@@ -164,9 +164,8 @@ const Header = () => {
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
             {pages.map((page, index) => (
-              <Link href={page.href}>
+              <Link href={page.href} key={index}>
                 <Button
-                  key={index}
                   onClick={handleCloseNavMenu}
                   sx={{ my: 2, color: "white", display: "block" }}
                 >
