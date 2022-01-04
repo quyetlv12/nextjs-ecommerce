@@ -1,10 +1,14 @@
-import "../styles/globals.css";
 import type { AppProps } from "next/app";
-import Layout from "../components/layout";
+import { useEffect } from "react";
 import { Provider } from "react-redux";
-import {store} from '../redux/store'
+import Layout from "../components/layout";
+import { store } from '../redux/store';
+import "../styles/globals.css";
 
 function MyApp({ Component, pageProps }: AppProps) {
+  useEffect(() => {
+    localStorage.setItem('products' , JSON.stringify([]))
+  }, [])
   return (
     <Provider store={store}>
       <Layout>
