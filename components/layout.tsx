@@ -1,14 +1,15 @@
-import { ReactNode } from 'react'
+import { ReactNode, useEffect, useState } from 'react'
+import { KEY_PRODUCTS } from '../configs'
 import Footer from "./Footer"
 import Header from "./Header"
 type Props = {
-  children? : ReactNode
+  children? : ReactNode,
 }
 const Layout = ({children}:Props) =>{
   return <div>
-    <Header></Header>
+    <Header/>
     <main>{children}</main>
-    <Footer></Footer>
+    <Footer/>
   </div>
 }
 export default Layout
