@@ -52,7 +52,6 @@ export default function Notification() {
           </ListItem>
         )) :  <Typography textAlign="center">Không có thông báo</Typography>}
       </List>
-      <Divider />
     </Box>
   );
 

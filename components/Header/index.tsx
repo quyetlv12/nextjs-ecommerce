@@ -192,7 +192,7 @@ const Header = () => {
             }}
           >
             {/* // shopping cart */}
-            <ShoppingCart />
+            <ShoppingCart/>
             {/* notification  */}
             <Notification />
           </Box>

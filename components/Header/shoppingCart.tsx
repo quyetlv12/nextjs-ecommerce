@@ -1,5 +1,5 @@
 import ShoppingBasketIcon from "@mui/icons-material/ShoppingBasket";
-import { Avatar, Badge, IconButton, Tooltip } from "@mui/material";
+import { Avatar, Badge, IconButton, Tooltip, Typography } from "@mui/material";
 import Box from "@mui/material/Box";
 import Divider from "@mui/material/Divider";
 import Drawer from "@mui/material/Drawer";
@@ -16,7 +16,6 @@ import { IndexProps } from "../../interfaces/utility";
 type Anchor = "right";
 
 export default function ShoppingCart() {
-  const [key, setKey] = React.useState(undefined)
   const [state, setState] = React.useState({
     right: false,
   });
@@ -47,8 +46,8 @@ export default function ShoppingCart() {
       onClick={toggleDrawer(anchor, false)}
       onKeyDown={toggleDrawer(anchor, false)}
     >
-      <Divider />
-      <List>
+      {
+        products.length !== 0 ?  <List>
         {products.map((_elt:ProductsProps, index:IndexProps) => (
           <ListItem button key={index}>
             <ListItemIcon>
@@ -57,15 +56,18 @@ export default function ShoppingCart() {
             <ListItemText primary={_elt?.name} />
           </ListItem>
         ))}
-      </List>
+      </List> : <Typography textAlign={"center"}>Giỏ hàng trống</Typography>
+      }
+     
     </Box>
   );
+  React.useEffect(() => {}, [...products])
 
   return (
     <Box>
       <IconButton size="large" aria-label="show 4 new mails" color="inherit" onClick={toggleDrawer("right", true)} sx={{ color: "#fff" }}>
         <Tooltip title="Giỏ hàng">
-          <Badge badgeContent={4} color="error">
+          <Badge badgeContent={products.length} color="error">
             <ShoppingBasketIcon />
           </Badge>
         </Tooltip>
